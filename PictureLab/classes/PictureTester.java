@@ -112,7 +112,7 @@ public class PictureTester
   /** Method to test the collage method */
   public static void testCollage()
   {
-    Picture canvas = new Picture(800, 1500);
+    Picture canvas = new Picture(850, 1470);
     canvas.createCollage();
     canvas.explore();
   }
