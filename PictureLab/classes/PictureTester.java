@@ -112,7 +112,7 @@ public class PictureTester
   /** Method to test the collage method */
   public static void testCollage()
   {
-    Picture canvas = new Picture("640x480.jpg");
+    Picture canvas = new Picture(800, 1500);
     canvas.createCollage();
     canvas.explore();
   }
@@ -124,6 +124,14 @@ public class PictureTester
     swan.edgeDetection(10);
     swan.explore();
   }
+  public static void testCropAndCopy()
+  {
+    Picture temple = new Picture("seagull.jpg");
+    Picture f = new Picture("seagull.jpg");
+    temple.explore();
+    temple.cropAndCopy(f, 224, 327, 231, 344, 159, 229);
+    temple.explore();
+    }
   
   /** Main method for testing.  Every class can have a main
     * method in Java */

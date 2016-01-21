@@ -105,8 +105,8 @@ public class Picture extends SimplePicture
     {
       for (Pixel pixelObj : rowArray)
       {
-        pixelObj.setRed(0);
-        pixelObj.setGreen(0);
+        pixelObj.setRed(232);
+        pixelObj.setGreen(43);
       }
     }
       
@@ -373,18 +373,57 @@ public class Picture extends SimplePicture
   /** Method to create a collage of several pictures */
   public void createCollage()
   {
-    Picture flower1 = new Picture("flower1.jpg");
-    Picture flower2 = new Picture("flower2.jpg");
-    this.copy(flower1,0,0);
-    this.copy(flower2,100,0);
-    this.copy(flower1,200,0);
-    Picture flowerNoBlue = new Picture(flower2);
-    flowerNoBlue.zeroBlue();
-    this.copy(flowerNoBlue,300,0);
-    this.copy(flower1,400,0);
-    this.copy(flower2,500,0);
-    this.mirrorVertical();
-    this.write("collage.jpg");
+    Picture cat1 = new Picture("cat.jpg");
+    Picture cat2 = new Picture("cat.jpg");
+    Picture cat3 = new Picture("cat2.jpg");
+    Picture cat4 = new Picture("cat.jpg");
+    Picture cat5 = new Picture("cat2.jpg");
+    Picture cat6 = new Picture("cat.jpg");
+    Picture cat7 = new Picture("cat.jpg");
+    Picture cat8 = new Picture("cat2.jpg");
+    Picture cat9 = new Picture("cat.jpg");
+    Picture cat0 = new Picture("cat2.jpg");
+    cat0.grayScale();
+    this.copy(cat0, 305, 980);
+    
+    cat2.mirrorVertical();
+    
+    this.copy(cat2, 0, 490);
+    
+    cat3.mirrorHorizontal();
+    cat3.negate();
+    this.copy(cat3, 0, 0);
+    
+    
+    cat4.mirrorHorizontal();
+    cat4.negate();
+    this.copy(cat4, 0, 980);
+    
+    cat5.mirrorHorizontal();
+    
+    cat5.mirrorVertical();
+    this.copy(cat5, 0, 490);
+    
+    cat1.mirrorVerticalRightToLeft();
+   
+    this.copy(cat1, 305, 490);
+    
+    
+    cat6.mirrorHorizontalBotToTop();
+    cat6.grayScale();
+    this.copy(cat6, 610, 0);
+    cat8.mirrorHorizontalBotToTop();
+    cat8.grayScale();
+    this.copy(cat8, 610, 980);
+    
+    
+    cat7.mirrorHorizontalBotToTop();
+    cat7.mirrorVerticalRightToLeft();
+    this.copy(cat7, 610, 490);
+    
+    cat9.grayScale();
+    this.copy(cat9, 305, 0);
+    this.write("YudaiOkabecollage.jpg");
   }
   
   
@@ -414,7 +453,31 @@ public class Picture extends SimplePicture
     }
   }
   
+  public void cropAndCopy(Picture sourcePicture, int startSourceRow, int endSourceRow, 
+  int startSourceCol, int endSourceCol, int startDestRow, int startDestCol)
+  {
+      Pixel[][] source = sourcePicture.getPixels2D();
+      Pixel[][] dest = this.getPixels2D();
+      int rowinc = startDestRow;
+      int colinc = startDestCol;
+      for (int row = startSourceRow; row <= endSourceRow; row++)
+      {
+          
+          for (int col = startSourceCol; col <= endSourceCol; col++)
+          {
+              dest[rowinc][colinc].setColor(source[row][col].getColor());
+              
+              colinc++;
+              
+              
+            }
+          rowinc++;
+          colinc = startDestCol;
+        }
+    }
   
+
+    
   /* Main method for testing - each class in Java can have a main 
    * method 
    */
@@ -425,5 +488,4 @@ public class Picture extends SimplePicture
     beach.zeroBlue();
     beach.explore();
   }
-  
-} // this } is the end of class Picture, put all new methods before this
+  } // this } is the end of class Picture, put all new methods before this
